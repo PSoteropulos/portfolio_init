@@ -1,0 +1,103 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 22px;
+}
+
+body{ 
+    width: 100%;
+    /* height: 100%; */
+}
+#container{
+    display: flex;
+    margin: 40px;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(235, 230, 209);
+    box-shadow: 5px 5px 5px;
+    border-radius: 10px;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 80%;
+    margin-bottom: 40px;
+    /* border-bottom: 2px solid black; */
+}
+#navright{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#navright form{
+    margin-left: 50px;
+}
+#navlower{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+h1{
+    font-size: 42px;
+}
+h2{
+    font-size: 32px;
+}
+h3{
+    font-size: 28px;
+}
+#flash{
+    color: red;
+    margin: 10px;
+}
+
+input, textarea{
+    width: 150px;
+    box-shadow: 2px 2px black;
+    border-radius: 4px;
+    margin: 10px;
+}
+.buttons{
+    width: fit-content;
+    padding: 5px;
+    font-size:medium ;
+}
+form{
+    display: flex;
+    flex-direction: row;
+}
+#recipe_left{
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+}
+#recipe_left input, textarea{
+    width: 250px;
+    max-width: 250px;
+    min-height: 30px;
+}
+#recipe_right{
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+}
+.radiobtn{
+    box-shadow: none;
+    border-radius: none;
+    margin: -50px;
+}
+.radios{
+    margin-top: 30px;
+    text-align: center;
+
+}

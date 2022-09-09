@@ -1,0 +1,138 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 22px;
+}
+
+body{ 
+    width: 100%;
+    /* height: 100%; */
+}
+#container{
+    display: flex;
+    margin: 40px;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(235, 230, 209);
+    box-shadow: 5px 5px 5px;
+    border-radius: 10px;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 80%;
+    margin-bottom: 40px;
+    /* border-bottom: 2px solid black; */
+}
+#navright{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#navright form{
+    margin-left: 50px;
+}
+h1{
+    font-size: 42px;
+}
+h2{
+    font-size: 32px;
+}
+h3{
+    font-size: 28px;
+}
+#flashcontainer{
+    height: 50px;
+}
+#flash{
+    color: red;
+    margin: 10px;
+    font-size: 32px;
+}
+input{
+    width: 150px;
+    box-shadow: 2px 2px black;
+    border-radius: 4px;
+}
+.buttons{
+    width: fit-content;
+    padding: 5px;
+    font-size:medium ;
+}
+th{
+    font-size: 20px;
+}
+table td{
+    border: 1px black solid;
+    border-collapse: collapse;
+    font-size: 20px;
+    height: 50px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+table{
+    text-align: center;
+    width: 800px;
+    margin-bottom: 50px;
+}
+#links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 400px;
+    
+}
+/* #deletebutton{
+    background: none!important;
+    width: auto;
+    border: none;
+    box-shadow: none;
+    padding: 0!important;
+    text-decoration: underline;
+    cursor: pointer;
+    color: red;
+} */
+#deletebutton{
+    align-items: normal;
+    background-color: rgba(0,0,0,0);
+    border-color: rgb(0, 0, 238);
+    border-style: none;
+    box-sizing: content-box;
+    color: rgb(0, 0, 238); 
+    cursor: pointer;
+    display: inline;
+    font: inherit;
+    height: auto;
+    padding: 0;
+    perspective-origin: 0 0;
+    text-align: start;
+    text-decoration: underline;
+    transform-origin: 0 0;
+    width: auto;
+    -moz-appearance: none;
+    -webkit-logical-height: 1em; /* Chrome ignores auto, so we have to use this hack to set the correct height  */
+    -webkit-logical-width: auto; /* Chrome ignores auto, but here for completeness */
+    box-shadow: none;
+}
+#recipe_tables{
+    display: flex;
+    flex-direction: row;
+}
+#recipe_left, #recipe_right{
+    text-align: center;
+    margin: 20px;
+}
+#all_recipes, #favorite_recipes{
+    width: 850px;
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 10px;
+}
+a{
+    text-decoration: none;
+}

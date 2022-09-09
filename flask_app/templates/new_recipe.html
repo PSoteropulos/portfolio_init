@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'new_recipe_style.css')}}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div id="container">
+        <nav>
+            <div id="header">
+            <h1>Create a New Recipe!</h1>
+            </div>
+            <div id="navright">
+                <a href="/dashboard">Back to Recipe Dashboard</a>
+                <form action="/logout" method="post">
+                    <input class="buttons"  type="submit" name="logout" value="Logout">
+                </form>
+            </div>
+        </nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p id="flash">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div id="recipe_form">
+            <form action="/create_recipe" id="create_recipe" method="post">
+                <div id="recipe_left">
+                    <input type="hidden" name="user_id" value={{user.id}}>
+                    {% if 'name' in session %}
+                        <label for="name">Dish Name</label>
+                        <input type="text" name="name" value='{{session["name"]}}'>
+                    {% endif %}
+                    {% if 'name' not in session %}
+                        <label for="name">Dish Name</label>
+                        <input type="text" name="name">
+                    {% endif %}    
+                    {% if 'description' in session %}
+                        <label for="description">Description</label>
+                        <textarea maxlength="255" name="description">{{session["description"]}}</textarea>
+                    {% endif %} 
+                    {% if 'description' not in session %}
+                        <label for="description">Description</label>
+                        <textarea name="description"></textarea>
+                    {% endif %} 
+                    {% if 'instructions' in session %}
+                        <label for="instructions">Instructions</label>
+                        <textarea name="instructions">{{session['instructions']}}</textarea>
+                    {% endif %}
+                    {% if 'instructions' not in session %}
+                        <label for="instructions">Instructions</label>
+                        <textarea name="instructions"></textarea>
+                    {% endif %}
+                </div>
+                <div id="recipe_right">
+                    {% if 'date_made' in session %}
+                        <label for="date_made">Date made</label>
+                        <input type="date" name="date_made" value={{session['date_made']}}>
+                    {% endif %}
+                    {% if 'date_made' not in session %}
+                        <label for="date_made">Date made</label>
+                        <input type="date" name="date_made">
+                    {% endif %}
+                    {% if 'under_30' in session %}
+                    <div class="radios">
+                        <label for="under_30">Under 30 minutes?</label>
+                        <input type="radio" class="radiobtn" name="under_30" value="Yes"
+                        {% if session['under_30'] == 'Yes' %}
+                            checked="yes"
+                        {% endif %}
+                        >
+                        <label>Yes</label>
+                        <input type="radio" class="radiobtn" name="under_30" value="No"
+                        {% if session['under_30'] == 'No' %}
+                            checked="yes"
+                        {% endif %}
+                        >
+                        <label>No</label>
+                    {% endif %}
+                    {% if 'under_30' not in session %}
+                    <div class="radios">
+                        <label for="under_30">Under 30 minutes?</label>
+                        <input type="radio" class="radiobtn" name="under_30" value="Yes">
+                        <label>Yes</label>
+                        <input type="radio" class="radiobtn" name="under_30" value="No">
+                        <label>No</label>
+                    {% endif %}
+                    </div>
+                    <input class="buttons" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'dashboard_style.css')}}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div id="container">
+        <nav>
+            <div id="header">
+            <h1>Welcome, {{user.first_name}}</h1>
+            <h3>All posted recipes:</h3>
+            </div>
+            <div id="navright">
+                <a href="/new_recipe">+ Create A Recipe</a>
+                <form action="/logout" method="post">
+                    <input class="buttons"  type="submit" name="logout" value="Logout">
+                </form>
+            </div>
+        </nav>
+        <div id="flashcontainer">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p id="flash">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div id="recipe_tables">
+            <div id="recipe_left">
+                <h2>All recipes:</h2>
+                <div id="all_recipes">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Under 30?</th>
+                                <th>Posted By</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recipe in recipes %}
+                                <tr>
+                                    <td>{{recipe.name}}</td>
+                                    <td>{{recipe.under_30}}</td>
+                                    <td>{{recipe.creator.first_name}}</td>
+                                    <td id="links">
+                                        <a href="/add_to_favorites/{{recipe.id}}">Add to Favorites</a>
+                                        {% if user.id == recipe.user_id %}
+                                        <a href="/edit_recipe/{{recipe.id}}">Edit</a>
+                                        <form action="/delete_recipe" method="post">
+                                            <input type="hidden" name="recipe_id" value={{recipe.id}}>
+                                            <input type="hidden" name="user_id" value={{user.id}}>
+                                            <input id="deletebutton" type="submit" value="Delete">
+                                        </form>
+                                        {% else %}
+                                        <a href="/view_recipe/{{recipe.id}}">View Recipe</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% if favorites %}
+                <div id="recipe_right">
+                    <h2>Your favorite recipes:</h2>
+                    <div id="favorite_recipes">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Under 30?</th>
+                                    <th>Posted By</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for favorite in favorites %}
+                                    <tr>
+                                        <td>{{favorite.name}}</td>
+                                        <td>{{favorite.under_30}}</td>
+                                        <td>{{favorite.creator.first_name}}</td>
+                                        <td id="links">
+                                            <a href="/view_recipe/{{favorite.id}}">View Recipe</a>
+                                            <form action="/delete_from_favorites" method="post">
+                                                <input type="hidden" name="recipe_id" value={{favorite.id}}>
+                                                <input type="hidden" name="user_id" value={{user.id}}>
+                                                <input id="deletebutton" type="submit" value="Delete favorite">
+                                            </form>
+                                            <!-- {% if user.id == favorite.creator.id %}
+                                                | <a href="/edit_recipe/{{favorite.id}}">Edit</a> -->
+                                                <!-- | <form action="/delete_recipe" method="post">
+                                                    <input type="hidden" name="recipe_id" value={{favorite.id}}>
+                                                    <input type="hidden" name="user_id" value={{user.id}}>
+                                                    <input id="deletebutton" type="submit" value="Delete">
+                                                </form> -->
+                                            <!-- {% endif %} -->
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

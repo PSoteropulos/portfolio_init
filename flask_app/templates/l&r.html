@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'l&r_style.css')}}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <nav>
+        <h1>Recipe Share</h1>
+        <h2>Please register or log in to continue</h2>
+    </nav>
+    <div id="container">
+        <div id="col1">
+            <h2>Register</h2>
+            <div class="flash">
+                {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p >{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <form action="/register" id="regform" method="post">
+                {% if 'first_name' in session %}
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" value={{session['first_name']}}>
+                {% endif %}
+                {% if 'first_name' not in session %}
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name">
+                {% endif %}
+                {% if 'last_name' in session %}
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" value={{session['last_name']}}>
+                {% endif %}
+                {% if 'last_name' not in session %}
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name">
+                {% endif %}
+                {% if 'email' in session %}
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" value={{session['email']}}>
+                {% endif %}
+                {% if 'email' not in session %}
+                    <label for="email">Email:</label>
+                    <input type="email" name="email">
+                {% endif %}
+                <label for="password">Password:</label>
+                <input type="password" name="password">
+                <label for="password_confirm">Confirm Password:</label>
+                <input type="password" name="password_confirm">
+                <input class="submit" type="submit" value="Register">
+            </form>
+        </div>
+        <div id="col2">
+            <h2>Login</h2>
+            <div class="flash">
+                {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <form id="loginform" action="/login" method="post">
+                {% if 'login_email' in session %}
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" value={{session['login_email']}}>
+                {% endif %}
+                {% if 'login_email' not in session %}
+                    <label for="email">Email:</label>
+                    <input type="email" name="email">
+                {% endif %}
+                <label for="password">Password:</label>
+                <input type="password" name="password">
+                <input class="submit" type="submit" value="Login">
+            </form>
+            <a href="/forgot_email_pw">Forgot email or password? Click here.</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+}
+body{
+    background-color: rgb(255, 255, 255); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 20px;
+    background-color: rgb(235, 230, 209);
+    width: 100%;
+}
+h1{
+    font-size: 60px;
+}
+h2{
+    font-size: 40px;
+    margin: 10px;
+}
+.flash{
+    font-size: 28px;
+    margin: 10px;
+    color: red;
+    /* border: 2px black solid; */
+    /* width: 100%; */
+}
+.flash p{
+    margin-bottom: 10px;
+}
+#container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+#col1{
+    margin: 50px;
+    padding: 30px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(235, 230, 209);
+    border-radius: 10px;
+}
+#regform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px ;
+}
+#col2{
+    margin: 50px;
+    padding: 30px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(235, 230, 209);
+    border-radius: 10px;
+}
+#loginform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px ;
+}
+input{
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+.submit{
+    margin-top: 30px;
+    width: 125px;
+    box-shadow: 2px 2px 2px;
+}

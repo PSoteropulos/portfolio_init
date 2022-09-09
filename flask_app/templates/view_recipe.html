@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'view_recipe_style.css')}}">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div id="container">
+        <nav>
+            <div id="header">
+                <h1>Welcome, {{user.first_name}}</h1>
+                <div id="navright">
+                    <a href="/dashboard">Back to Recipe Dashboard</a>
+                    <form action="/logout" method="post">
+                        <input class="buttons"  type="submit" name="logout" value="Logout">
+                    </form>
+                </div>
+            </div>
+            <div id="navlower">
+                <h2>{{recipe.name}}</h2>
+                <h3>Posted by {{recipe.creator.first_name}}</h3>
+            </div>
+        </nav>
+        <div id="recipe_table">
+                    <p>Description: {{recipe.description}}</p>
+
+                    <p>Instructions: {{recipe.instructions}}</p>
+
+                    <p>Date made: {{recipe.date_made.strftime("%B %e, %Y")}}</p>
+
+                    <p>Under 30 minutes? {{recipe.under_30}}</p>
+        </div>
+        <div id="manipulate">
+        {% if user.id == recipe.user_id %}
+            <a href="/edit_recipe/{{recipe.id}}">Edit</a>
+            <form action="/delete_recipe" method="post">
+                <input type="hidden" name="recipe_id" value={{recipe.id}}>
+                <input type="hidden" name="user_id" value={{user.id}}>
+                <input id="deletebutton" type="submit" value="Delete">
+            </form>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>
